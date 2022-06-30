@@ -1,4 +1,4 @@
-[![Basic](https://github.com/CodeMuhammed/cosmwasm_todo_app/actions/workflows/Basic.yml/badge.svg)](https://github.com/CodeMuhammed/cosmwasm_todo_app/actions/workflows/Basic.yml)
+[![Tests & Lints](https://github.com/CodeMuhammed/cosmwasm_todo_app/actions/workflows/Basic.yml/badge.svg)](https://github.com/CodeMuhammed/cosmwasm_todo_app/actions/workflows/Basic.yml)
 
 
 # CHIHUAHUAD: WORKING WITH SMART CONTRACT NOTES
