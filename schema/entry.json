@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Entry",
+  "type": "object",
+  "required": [
+    "description",
+    "id",
+    "priority",
+    "status"
+  ],
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0
+    },
+    "priority": {
+      "$ref": "#/definitions/Priority"
+    },
+    "status": {
+      "$ref": "#/definitions/Status"
+    }
+  },
+  "definitions": {
+    "Priority": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "Status": {
+      "type": "string",
+      "enum": [
+        "ToDo",
+        "InProgress",
+        "Done",
+        "Cancelled"
+      ]
+    }
+  }
+}

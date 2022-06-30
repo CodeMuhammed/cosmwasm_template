@@ -1,27 +1,57 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
+use crate::state::{Entry, Priority, Status};
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub count: i32,
+    pub owner: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
-    Increment {},
-    Reset { count: i32 },
+    TransferContractOwnership {
+        new_owner: String,
+    },
+    NewEntry {
+        description: String,
+        priority: Option<Priority>,
+    },
+    UpdateEntry {
+        id: u64,
+        description: Option<String>,
+        status: Option<Status>,
+        priority: Option<Priority>,
+    },
+    DeleteEntry {
+        id: u64,
+    },
+    BurnContractBalance {},
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    // GetCount returns the current count as a json-encoded number
-    GetCount {},
+    QueryEntry {
+        id: u64,
+    },
+    QueryList {
+        start_after: Option<u64>,
+        limit: Option<u32>,
+    },
 }
 
-// We define a custom struct for each query response
+// A custom struct is defined for each query response
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct CountResponse {
-    pub count: i32,
+pub struct EntryResponse {
+    pub id: u64,
+    pub description: String,
+    pub status: Status,
+    pub priority: Priority,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct ListResponse {
+    pub entries: Vec<Entry>,
 }
