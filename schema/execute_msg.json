@@ -5,26 +5,6 @@
     {
       "type": "object",
       "required": [
-        "transfer_contract_ownership"
-      ],
-      "properties": {
-        "transfer_contract_ownership": {
-          "type": "object",
-          "required": [
-            "new_owner"
-          ],
-          "properties": {
-            "new_owner": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "required": [
         "new_entry"
       ],
       "properties": {
@@ -130,6 +110,26 @@
       "properties": {
         "burn_contract_balance": {
           "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "transfer_contract_ownership"
+      ],
+      "properties": {
+        "transfer_contract_ownership": {
+          "type": "object",
+          "required": [
+            "new_owner"
+          ],
+          "properties": {
+            "new_owner": {
+              "type": "string"
+            }
+          }
         }
       },
       "additionalProperties": false
