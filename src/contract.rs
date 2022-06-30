@@ -176,7 +176,7 @@ fn execute_transfer_owner(
 
     // Here we update the owner in the config
     let updated_config = INIT_CONFIG.update(deps.storage, |mut data| -> StdResult<_> {
-        data.owner = new_owner.clone();
+        data.owner = new_owner;
 
         Ok(data)
     })?;
