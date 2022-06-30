@@ -31,7 +31,7 @@ wasmd: <https://block-explorer.malaga-420.cosmwasm.com/>
 chihuahuad: <TODO>
 
 
-## Source config env for use in the shell
+## Source config env for use in the shell (zsh)
 
 source ~/.profile
 

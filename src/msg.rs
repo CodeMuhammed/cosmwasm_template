@@ -11,9 +11,6 @@ pub struct InstantiateMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
-    TransferContractOwnership {
-        new_owner: String,
-    },
     NewEntry {
         description: String,
         priority: Option<Priority>,
@@ -28,6 +25,9 @@ pub enum ExecuteMsg {
         id: u64,
     },
     BurnContractBalance {},
+    TransferContractOwnership {
+        new_owner: String,
+    },
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
