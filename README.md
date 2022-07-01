@@ -52,7 +52,12 @@ source <(curl -sSL <https://raw.githubusercontent.com/CosmWasm/testnets/master/m
 ## Query balance
 
 chihuahuad query bank total $NODE
-chihuahuad query bank total $NODE query bank balances $(chihuahuad keys show -a palingram) $NODE
+
+chihuahuad query bank balances $(chihuahuad keys show -a palingram) $NODE
+
+## Send funds to other account
+chihuahuad tx bank send [from_key_or_address] [to_address] [amount] [flags]
+
 
 
 ## To run unit tests located in the .cargo/config file
@@ -68,12 +73,14 @@ chihuahuad query wasm list-code $NODE
 ## Generate a new cosm-wasm project from template
 
 cargo install cargo-generate --features vendored-openssl
+
 cargo generate --git <https://github.com/CosmWasm/cosmwasm-template.git> --name my-first-contract
 
 
 ## Compile the wasm contract with stable toolchain
 
 rustup default stable
+
 cargo wasm
 
 
@@ -116,6 +123,7 @@ chihuahuad query wasm list-contract-by-code $CODE_ID $NODE --output json
 ## Verify if the binary stored on-chain for $CODE_ID matches with the local build
 
 chihuahuad query wasm code $CODE_ID $NODE artifacts/existing_binary.wasm
+
 diff artifacts/cw_nameservice.wasm artifacts/existing_binary.wasm
 
 
@@ -134,6 +142,7 @@ chihuahuad tx wasm instantiate $CODE_ID "$INIT" --from palingram --label "BURN T
 ### Get the latest contract instantiated for contract with $CODE_ID
 
 export CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json | jq -r '.contracts[-1]')
+
 echo $CONTRACT
 
 
@@ -161,13 +170,15 @@ chihuahuad query wasm contract-state raw $CONTRACT 636F6E74726163745F696E666F $N
 
 ### Calling execute methods
 
-export E_PAYLOAD='{"delete_entry":{"id":1}}'
+export E_PAYLOAD='{"burn_contract_balance":{}}'
+
 chihuahuad tx wasm execute $CONTRACT "$E_PAYLOAD" --amount 1000000000stake --from palingram $NODE $TXFLAG -y
 
 
 ### calling query methods
 
 export Q_PAYLOAD='{"query_list":{}}'
+
 chihuahuad query wasm contract-state smart $CONTRACT "$Q_PAYLOAD" $NODE --output json
 
 
