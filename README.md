@@ -28,7 +28,7 @@ rustup target list --installed
 
 wasmd: <https://block-explorer.malaga-420.cosmwasm.com/>
 
-chihuahuad: <TODO>
+chihuahuad: <https://testnet.explorer.erialos.me/chihuahua>
 
 
 ## Source config env for use in the shell (zsh)
